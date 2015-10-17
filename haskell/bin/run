@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -n "$*" ]
+  then docker run -v $(pwd):/app -w /app haskell $*
+else
+  docker run -it haskell
+fi
