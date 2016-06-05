@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -n "$*" ]
+  then docker run -v $(pwd):/app -w /app swiftdocker/swift $*
+else
+  docker run --privileged -it swiftdocker/swift swift
+fi
