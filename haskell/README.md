@@ -13,6 +13,6 @@ Prelude>
 Alternatively you can pass `bin/run` arguments:
 
 ```
-% bin/run runghc basis/hello.hs                                                                                                                                            (git)-[master]
+$ bin/run runghc basis/hello.hs
 Hello World!
 ```
