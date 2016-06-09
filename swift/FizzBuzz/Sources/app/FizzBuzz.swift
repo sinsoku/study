@@ -6,14 +6,15 @@ class FizzBuzz {
     }
 
     func toString() -> String {
-      if self.num % 15 == 0 {
-        return "FizzBuzz"
-      } else if self.num % 3 == 0 {
-        return "Fizz"
-      } else if self.num % 5 == 0 {
-        return "Buzz"
-      } else {
-        return String(self.num)
-      }
+        switch self.num {
+            case let n where n % 15 == 0:
+                return "FizzBuzz"
+            case let n where n % 3 == 0:
+                return "Fizz"
+            case let n where n % 5 == 0:
+                return "Buzz"
+            default:
+                return String(self.num)
+        }
     }
 }
