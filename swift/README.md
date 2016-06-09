@@ -16,3 +16,22 @@ Alternatively you can pass bin/run arguments:
 $ bin/run swift sample/hello.swift
 Hello, World!
 ```
+
+## Create a package
+
+```
+$ mkdir sample
+$ bin/run swift package init -C sample
+```
+
+## Build a package
+
+```
+$ bin/run swift build -C sample
+```
+
+## Test a package
+
+```
+$ bin/run swift test -C sample
+```
