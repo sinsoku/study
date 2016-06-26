@@ -1,0 +1,3 @@
+[submodule "swift/PlayingCard"]
+	path = swift/PlayingCard
+	url = git@github.com:sinsoku/PlayingCard.git
