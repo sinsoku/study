@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826050945) do
+ActiveRecord::Schema.define(version: 20160826055612) do
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_organizations_on_name", unique: true
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "user_id",                 null: false
+    t.string   "owner_type",              null: false
+    t.integer  "owner_id",                null: false
+    t.string   "title",                   null: false
+    t.text     "body",       default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["owner_type", "owner_id"], name: "index_posts_on_owner_type_and_owner_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "user_organizations", force: :cascade do |t|
