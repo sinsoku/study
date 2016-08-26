@@ -8,6 +8,14 @@ class Post < ApplicationRecord
 
   before_validation :set_owner, if: :owner_as
 
+  def notify
+    return unless owner.is_a?(Organization)
+
+    owner.users.where.not(id: user_id).each do |u|
+      NotificationChannel.broadcast_to u, self
+    end
+  end
+
   private
 
   def set_owner
