@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_organizations
   resources :organizations
   get 'home/index'
 
