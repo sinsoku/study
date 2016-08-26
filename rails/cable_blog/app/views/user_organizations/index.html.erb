@@ -14,8 +14,8 @@
   <tbody>
     <% @user_organizations.each do |user_organization| %>
       <tr>
-        <td><%= user_organization.user %></td>
-        <td><%= user_organization.organization %></td>
+        <td><%= user_organization.user.email %></td>
+        <td><%= user_organization.organization.name %></td>
         <td><%= link_to 'Show', user_organization %></td>
         <td><%= link_to 'Edit', edit_user_organization_path(user_organization) %></td>
         <td><%= link_to 'Destroy', user_organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
