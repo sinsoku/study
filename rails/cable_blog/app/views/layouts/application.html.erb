@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to 'Home', root_path %>
+      <%= link_to 'Organization', organizations_path %>
+      <%= link_to 'UserOrganization', user_organizations_path %>
+      <%= link_to 'Post', posts_path %>
+    </nav>
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>
