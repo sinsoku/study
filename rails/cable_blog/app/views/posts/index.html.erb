@@ -16,8 +16,13 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.user %></td>
-        <td><%= post.owner %></td>
+        <td><%= post.user.email %></td>
+        <td>
+          <%= post.owner.id %>
+          <% if post.owner.is_a? Organization %>
+            <%= post.owner.name %>
+          <% end %>
+        </td>
         <td><%= post.title %></td>
         <td><%= post.body %></td>
         <td><%= link_to 'Show', post %></td>
