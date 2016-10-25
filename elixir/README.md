@@ -14,7 +14,7 @@ iex(1)>
 
 Alternatively you can pass `bin/run` arguments:
 
-```
-% bin/run elixir sample/hello.exs
+```elixir
+$ bin/run elixir sample/hello.exs
 Hello, World!
 ```
