@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -n "$*" ]
+  then docker run -v $(pwd):/app -w /app elixir $*
+else
+  docker run -it elixir
+fi
