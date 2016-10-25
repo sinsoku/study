@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CableBlog</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+      <%= link_to 'Home', root_path %>
+      <%= link_to 'Organization', organizations_path %>
+      <%= link_to 'UserOrganization', user_organizations_path %>
+      <%= link_to 'Post', posts_path %>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
