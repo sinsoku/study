@@ -3,5 +3,5 @@
 if [ -n "$*" ]
   then docker run -v $(pwd):/app -w /app elixir $*
 else
-  docker run -it elixir
+  docker run -it -v $(pwd):/app -w /app elixir
 fi
