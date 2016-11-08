@@ -1,10 +1,8 @@
 defmodule Times do
   defmacro times_n(base) do
-    method_name = String.to_atom("times_#{base}")
-    code = [do: {:def, [line: 0],
-             [{method_name, [line: 0], [{:n, [line: 0], nil}]},
-               [do: {:*, [line: 0], [base, {:n, [line: 0], nil}]}]]}]
-    code
+    quote do
+      def unquote(:"times_#{base}")(n), do: unquote(base) * n
+    end
   end
 end
 defmodule Test do
