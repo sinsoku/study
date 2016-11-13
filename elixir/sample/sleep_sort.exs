@@ -3,10 +3,10 @@ defmodule SleepSort do
     me = self
     collection
     |> Enum.map(fn (n) ->
-        spawn_link fn -> (send me, { self, :timer.sleep(n * 10) && n }) end
+        spawn_link fn -> (send me, { :timer.sleep(n * 10) && n }) end
       end)
     |> Enum.map(fn (_pid) ->
-        receive do { _pid, result } -> result end
+        receive do { result } -> result end
       end)
   end
 end
