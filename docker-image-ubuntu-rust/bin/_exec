@@ -1,0 +1,4 @@
+#!/bin/bash
+IMAGE=dolphm/ubuntu-latest-rust-nightly
+
+docker run --rm -v $(pwd):/app -w /app ${IMAGE} $*
