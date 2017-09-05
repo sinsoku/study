@@ -19,6 +19,6 @@ rbenv global $RUBY_VERSION
 
 # install rails 1.0.0
 echo 'gem: --no-ri --no-rdoc' > ~/.gemrc
-gem install rake --version='0.6.2'
-gem install rails --version='1.0.0'
+gem install rake --version='0.7.3'
+gem install rails --version='2.0.1'
 rbenv rehash
