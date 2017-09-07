@@ -1,16 +1,17 @@
 require 'spec_helper'
+require 'ostruct'
 require_relative '../../../../apps/web/views/books/new'
 
 describe Web::Views::Books::New do
-  let(:exposures) { Hash[foo: 'bar'] }
+  let(:params)    { OpenStruct.new(valid?: false, error_messages: ['Title must be filled', 'Author must be filled']) }
+  let(:exposures) { Hash[params: params] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/books/new.html.erb') }
   let(:view)      { Web::Views::Books::New.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  it 'exposes #foo' do
-    skip 'This is an auto-generated test. Edit it and add your own tests.'
-
-    # Example
-    view.foo.must_equal exposures.fetch(:foo)
+  it 'displays list of errors when params contains errors' do
+    rendered.must_include('There was a problem with your submission')
+    rendered.must_include('Title must be filled')
+    rendered.must_include('Author must be filled')
   end
 end
