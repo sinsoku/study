@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'nokogiri'
+require 'open-uri'
+
+Sponsor = Struct.new("Sponsor", :name, :url, :year)
+RUBYKAIGI_URL = "http://rubykaigi.org/"
+
+sponsors = []
+
+def search_sponsors(doc, year)
+  query = year < 2015 ? "#sponsors .name a" : ".sponsor__name a"
+  doc.css(query).map { |el| Sponsor.new(el.text, el["href"], year) }
+end
+
+(2013..2017).reverse_each do |year|
+  url = "#{RUBYKAIGI_URL}/#{year}/sponsors"
+  puts "#{url}: Now scraping..."
+
+  doc = Nokogiri::HTML(open(url))
+  sponsors += search_sponsors(doc, year)
+end
+
+puts "Generate ranking"
+
+ranking = sponsors.map do |sponsor|
+  years = sponsors.select { |obj| obj.name == sponsor.name || obj.url == sponsor.url }.map(&:year)
+  [sponsor, years.sort]
+end.sort_by { |_, years| [years.size, years.join(", ")] }
+
+puts "-" * 30
+
+output = []
+ranking.reverse_each do |sponsor, years|
+  next if [sponsor.name, sponsor.url].any? { |x| output.include?(x) }
+  puts "#{years.size}: #{sponsor.name} - #{sponsor.url} (#{years.join(", ")})"
+
+  output += [sponsor.name, sponsor.url]
+end
