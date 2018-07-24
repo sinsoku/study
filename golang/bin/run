@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -n "$*" ]
+  then docker run -v $(pwd):/app -w /app golang go run $*
+else
+  docker run -it --rm golang
+fi
