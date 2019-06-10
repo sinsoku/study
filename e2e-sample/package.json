@@ -1,0 +1,15 @@
+{
+  "name": "e2e-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "sinsoku",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^24.8.0",
+    "puppeteer": "^1.17.0"
+  }
+}
