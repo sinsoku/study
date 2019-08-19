@@ -3,7 +3,7 @@ ROOT=$(cd $(dirname $0)/../;pwd)
 IMAGE=rust
 
 if [ -n "$*" ]
-  then docker run -v ${ROOT}:/app -w /app ${IMAGE} bash -c $*
+  then docker run -e USER=$USER -v ${ROOT}:/app -w /app ${IMAGE} $*
 else
-  docker run -it --rm ${IMAGE}
+  docker run -it --rm -e USER=$USER -v ${ROOT}:/app -w /app ${IMAGE}
 fi
