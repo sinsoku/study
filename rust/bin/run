@@ -1,0 +1,9 @@
+#!/bin/sh
+ROOT=$(cd $(dirname $0)/../;pwd)
+IMAGE=rust
+
+if [ -n "$*" ]
+  then docker run -v ${ROOT}:/app -w /app ${IMAGE} bash -c $*
+else
+  docker run -it --rm ${IMAGE}
+fi
