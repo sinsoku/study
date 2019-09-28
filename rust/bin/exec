@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+ROOT=$(cd $(dirname $0)/../;pwd)
+IMAGE=rust
+RUST_CMD="docker run -e USER=$USER -v ${ROOT}:/app -w /app ${IMAGE}"
+
+if [ -n "$1" ]
+  then
+    $RUST_CMD rustc $1
+    EXEC_PATH=`basename $1 .rs`
+    $RUST_CMD ./$EXEC_PATH
+    rm ./$EXEC_PATH
+else
+  echo "Usage: bin/exec <source>"
+fi
