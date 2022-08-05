@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    platform: linux/amd64
+    command: --innodb_use_native_aio=0
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+
+  web:
+    image: wordpress:6.0.1
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    volumes:
+      - www_data:/var/www/html
+    environment: &environment
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+
+  cli:
+    image: wordpress:cli-2.6.0
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/workspace
+      - www_data:/var/www/html
+    environment:
+      <<: *environment
+      WORDPRESS_VERSION: 6.0.1
+      WORDPRESS_LOCALE: ja
+      WORDPRESS_URL: localhost.com
+      WORDPRESS_TITLE: example
+      WORDPRESS_ADMIN_USER: user
+      WORDPRESS_ADMIN_EMAIL: admin@example.com
+    working_dir: /var/www/html
+    profiles:
+      - setup
+
+volumes:
+  www_data:
+  db_data:
